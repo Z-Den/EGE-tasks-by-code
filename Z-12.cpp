@@ -1,30 +1,40 @@
 #include <iostream>
-
+#include <string>
 
 using namespace std;
 
 int main()
 {
-    string s;
-    string s1="B",s2="A",s3="BA";
-    for(int i=0;i<=51;i++)
+    string s1(25, '1'), s2(17, '2'), s3(10, '3');
+    string s = '>' + s1 + s2 + s3;
+    int sum = 0;
+
+    while (s.find(">1") != string::npos || s.find(">2") != string::npos || s.find(">3") != string::npos)
     {
-        s+="AB";
+        if (s.find(">1") != string::npos)
+        {
+            s.replace(s.find(">1"), 2, "22>3");
+        }
+        if (s.find(">2") != string::npos)
+        {
+            s.replace(s.find(">2"), 2, "2>");
+        }
+        if (s.find(">3") != string::npos)
+        {
+            s.replace(s.find(">3"), 2, "11>2");
+        }
     }
-  
-    while (s.find("AA")!=string::npos || s.find("BB")!=string::npos || s.find("AB")!=string::npos){
-        if (s.find("AA")!=string::npos){
-            s.replace(s.find("AA"),2,s1);
-        }
-        if (s.find("BB")!=string::npos){
-            s.replace(s.find("BB"),2,s2);
-        }
-        if (s.find("AB")!=string::npos){
-            s.replace(s.find("AB"),2,s3);
-        }
+    
+	cout << s;
+
+    getline(cin, s);
+
+    for (int i = 0; i < s.size(); i++)
+    {
+        sum += s[i] - '0';
     }
 
-    cout<<s;
+    cout << sum;
 
     return 0;
-}	
+}
